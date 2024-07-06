@@ -13,11 +13,12 @@ services:
     container_name: suivi-bourse-graf
     depends_on:
     - prometheus
-    image: grafana/grafana:11.1.0
+    image: grafana/grafana:11.0.0
     ports:
     - 3000:3000
     restart: unless-stopped
     volumes:
+    - sb_grafana_data:/var/lib/grafana
     - ./grafana_provisioning:/etc/grafana/provisioning
   prometheus:
     command:
@@ -31,7 +32,9 @@ services:
     volumes:
     - sb_prometheus_data:/prometheus
     - ./prometheus_provisioning:/etc/prometheus/
-version: '3.8'
+#version: '3.8'
 volumes:
   sb_prometheus_data:
+    driver: local
+  sb_grafana_data:
     driver: local
