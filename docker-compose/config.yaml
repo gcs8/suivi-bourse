@@ -1,20 +1,173 @@
 ---
 shares:
-- name: Apple
-  symbol: AAPL
+- name: VOO_Invest
+  symbol: VOO
   purchase:
-    quantity: 1
-    fee: 2
-    cost_price: 119.98
+    quantity: 80
+    fee: 0
+    cost_price: 474.23
   estate:
-    quantity: 2
-    received_dividend: 2.85
-- name: Bitcoin
-  symbol: BTC-USD
+    quantity: 80.5094
+    received_dividend: 251.08
+- name: VOO_Roth
+  symbol: VOO
   purchase:
-    quantity: 1
-    fee: 2
-    cost_price: 5000
+    quantity: 42
+    fee: 0
+    cost_price: 502.91
   estate:
-    quantity: 1
+    quantity: 42.1491
+    received_dividend: 74.91
+- name: VTI_Invest
+  symbol: VTI
+  purchase:
+    quantity: 144
+    fee: 0
+    cost_price: 256.51
+  estate:
+    quantity: 144.9639
+    received_dividend: 254.95
+- name: VTI_Roth
+  symbol: VTI
+  purchase:
+    quantity: 111
+    fee: 0
+    cost_price: 265
+  estate:
+    quantity: 111.3934
+    received_dividend: 105.66
+- name: VIG_Invest
+  symbol: VIG
+  purchase:
+    quantity: 53
+    fee: 0
+    cost_price: 151.59
+  estate:
+    quantity: 53.4385
+    received_dividend: 257.49
+- name: VIG_Roth
+  symbol: VIG
+  purchase:
+    quantity: 112
+    fee: 0
+    cost_price: 185.10
+  estate:
+    quantity: 112.552
+    received_dividend: 100.71
+- name: QQQM_Invest
+  symbol: QQQM
+  purchase:
+    quantity: 51
+    fee: 0
+    cost_price: 188.78
+  estate:
+    quantity: 51.0783
+    received_dividend: 15.68
+- name: QQQM_Roth
+  symbol: QQQM
+  purchase:
+    quantity: 158
+    fee: 0
+    cost_price: 192.70
+  estate:
+    quantity: 158.2493
+    received_dividend: 49.90
+- name: SCHD_Invest
+  symbol: SCHD
+  purchase:
+    quantity: 75
+    fee: 0
+    cost_price: 78.14
+  estate:
+    quantity: 75.7984
+    received_dividend: 61.81
+- name: SCHD_Roth
+  symbol: SCHD
+  purchase:
+    quantity: 117
+    fee: 0
+    cost_price: 78.14
+  estate:
+    quantity: 117.2348
+    received_dividend: 95.60
+- name: AMD_Invest
+  symbol: AMD
+  purchase:
+    quantity: 79
+    fee: 0
+    cost_price: 55.89
+  estate:
+    quantity: 79
     received_dividend: 0
+- name: MU_Invest
+  symbol: MU
+  purchase:
+    quantity: 43.15
+    fee: 0
+    cost_price: 56.67
+  estate:
+    quantity: 43.15
+    received_dividend: 36.97
+- name: XOM_Invest
+  symbol: XOM
+  purchase:
+    quantity: 25
+    fee: 0
+    cost_price: 51.06
+  estate:
+    quantity: 27.5462
+    received_dividend: 225.39
+- name: QCOM_Invest
+  symbol: QCOM
+  purchase:
+    quantity: 58
+    fee: 0
+    cost_price: 97.69
+  estate:
+    quantity: 62.7572
+    received_dividend: 494.66
+- name: BRK-B_Invest
+  symbol: BRK-B
+  purchase:
+    quantity: 36.0797
+    fee: 0
+    cost_price: 206.38
+  estate:
+    quantity: 36.0797
+    received_dividend: 0
+- name: NEE_Invest
+  symbol: NEE
+  purchase:
+    quantity: 134
+    fee: 0
+    cost_price: 64.12
+  estate:
+    quantity: 144.504
+    received_dividend: 808.55
+- name: PRTH_Invest
+  symbol: PRTH
+  purchase:
+    quantity: 511
+    fee: 0
+    cost_price: 5
+  estate:
+    quantity: 511
+    received_dividend: 
+- name: TSM_Roth
+  symbol: TSM
+  purchase:
+    quantity: 19
+    fee: 0
+    cost_price: 55.09
+  estate:
+    quantity: 19.844
+    received_dividend: 83.59
+- name: INTC_Roth
+  symbol: INTC
+  purchase:
+    quantity: 80
+    fee: 0
+    cost_price: 42.53
+  estate:
+    quantity: 80.327
+    received_dividend: 10
