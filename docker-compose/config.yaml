@@ -152,7 +152,7 @@ shares:
     cost_price: 5
   estate:
     quantity: 511
-    received_dividend: 
+    received_dividend: 0
 - name: TSM_Roth
   symbol: TSM
   purchase:
