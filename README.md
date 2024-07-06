@@ -9,6 +9,31 @@ Small app written in Python to monitor the stock shares you own. It uses Prometh
 
 Please visit the [documentation's website](https://pbrissaud.github.io/suivi-bourse/docs) !
 
+```bash
+wget https://github.com/pbrissaud/suivi-bourse/archive/refs/tags/v3.7.2.tar.gz
+
+mkdir  /usr/local/suivibourse
+
+tar -xf *.tar.gz -C /usr/local/suivibourse
+
+cd /usr/local/suivibourse
+
+ls
+
+cd suivi-bourse-*
+
+ls
+
+cd docker-compose/
+
+ls
+
+nano config.yaml 
+
+docker compose up -d
+
+```
+
 ## Getting Started
 
 There are mutiple ways to run the app but **Docker Compose** is the easiest way to begin !
@@ -41,7 +66,7 @@ shares:
 Run the following command in the `docker-compose` folder :
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 ### 4. Visit Grafana
