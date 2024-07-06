@@ -25,14 +25,14 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 26,
   "links": [],
   "liveNow": false,
   "panels": [
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "$DS"
       },
       "fieldConfig": {
         "defaults": {
@@ -70,6 +70,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -81,12 +82,12 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.1.0",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "$DS"
           },
           "editorMode": "code",
           "expr": "sum(sb_purchased_price{share_name=~\"$share\"} * on(share_name) sb_purchased_quantity{share_name=~\"$share\"})",
@@ -100,7 +101,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "$DS"
       },
       "fieldConfig": {
         "defaults": {
@@ -138,6 +139,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -149,12 +151,12 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.1.0",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "$DS"
           },
           "editorMode": "code",
           "expr": "sum(sb_share_price{share_name=~\"$share\"} * on(share_name) sb_owned_quantity{share_name=~\"$share\"})",
@@ -168,7 +170,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "$DS"
       },
       "fieldConfig": {
         "defaults": {
@@ -206,6 +208,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -217,12 +220,12 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.1.0",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "$DS"
           },
           "editorMode": "code",
           "expr": "((sum(sb_share_price{share_name=~\"$share\"} * on(share_name) sb_owned_quantity{share_name=~\"$share\"}) - sum(sb_purchased_price{share_name=~\"$share\"} * on(share_name) sb_purchased_quantity{share_name=~\"$share\"})) + sum(sb_received_dividend{share_name=~\"$share\"})) / sum(sb_purchased_price{share_name=~\"$share\"} * on(share_name) sb_purchased_quantity{share_name=~\"$share\"})",
@@ -234,6 +237,7 @@
       "type": "stat"
     },
     {
+      "collapsed": false,
       "datasource": {
         "type": "datasource",
         "uid": "grafana"
@@ -262,7 +266,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "$DS"
       },
       "fieldConfig": {
         "defaults": {
@@ -344,14 +348,18 @@
           "placement": "bottom",
           "showLegend": false
         },
-        "mode": "candles"
+        "mode": "candles",
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
       },
       "pluginVersion": "7.4.2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "$DS"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -366,7 +374,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "$DS"
           },
           "editorMode": "code",
           "expr": "max_over_time(sb_share_price{share_name=\"$share\"}[$__rate_interval])",
@@ -379,7 +387,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "$DS"
           },
           "editorMode": "code",
           "expr": "min_over_time(sb_share_price{share_name=\"$share\"}[$__rate_interval])",
@@ -392,7 +400,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "$DS"
           },
           "editorMode": "code",
           "expr": "last_over_time(sb_share_price{share_name=\"$share\"}[$__rate_interval] offset $__rate_interval) ",
@@ -438,6 +446,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -450,7 +459,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.1.0",
       "targets": [
         {
           "datasource": {
@@ -510,6 +519,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -522,7 +532,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.1.0",
       "targets": [
         {
           "datasource": {
@@ -581,6 +591,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -593,7 +604,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.1.0",
       "targets": [
         {
           "datasource": {
@@ -653,6 +664,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -665,7 +677,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.1.0",
       "targets": [
         {
           "datasource": {
@@ -733,6 +745,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -745,7 +758,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.1.0",
       "targets": [
         {
           "datasource": {
@@ -804,6 +817,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -816,7 +830,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.1.0",
       "targets": [
         {
           "datasource": {
@@ -876,6 +890,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -888,7 +903,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.1.0",
       "targets": [
         {
           "datasource": {
@@ -955,6 +970,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -967,7 +983,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.1.0",
       "targets": [
         {
           "datasource": {
@@ -994,7 +1010,7 @@
       "type": "stat"
     }
   ],
-  "refresh": "",
+  "refresh": "30m",
   "revision": 1,
   "schemaVersion": 39,
   "tags": [],
@@ -1008,7 +1024,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "$DS"
         },
         "definition": "label_values(sb_share_info{quote_type=~\"$quote_type\", share_exchange=~\"$exchange\"},share_name)",
         "hide": 0,
@@ -1042,7 +1058,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "$DS"
         },
         "definition": "label_values(sb_share_info, quote_type)",
         "hide": 0,
@@ -1073,7 +1089,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "$DS"
         },
         "definition": "label_values(sb_share_info, share_exchange)",
         "hide": 0,
@@ -1091,18 +1107,39 @@
         "skipUrlSync": false,
         "sort": 1,
         "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "Prometheus"
+          ],
+          "value": [
+            "ddqxwv80m3e2od"
+          ]
+        },
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "DS",
+        "options": [],
+        "query": "prometheus",
+        "queryValue": "",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
       }
     ]
   },
   "time": {
-    "from": "now-2d",
+    "from": "now-24h",
     "to": "now"
   },
-  "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {},
   "timezone": "",
-  "title": "Stock share monitoring",
-  "uid": "O9_AegInk",
-  "version": 8,
+  "title": "Stock share monitoring V2",
+  "uid": "O9_AegInkv2",
+  "version": 4,
   "weekStart": ""
 }
