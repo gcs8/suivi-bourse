@@ -483,7 +483,7 @@
           "color": {
             "mode": "thresholds"
           },
-          "decimals": 4,
+          "decimals": 2,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -626,7 +626,7 @@
           "color": {
             "mode": "thresholds"
           },
-          "decimals": 4,
+          "decimals": 2,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -698,7 +698,7 @@
           "color": {
             "mode": "thresholds"
           },
-          "decimals": 4,
+          "decimals": 2,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -849,6 +849,7 @@
           "color": {
             "mode": "thresholds"
           },
+          "decimals": 2,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1094,7 +1095,7 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-2d",
     "to": "now"
   },
   "timeRangeUpdatedDuringEditOrView": false,
@@ -1102,6 +1103,6 @@
   "timezone": "",
   "title": "Stock share monitoring",
   "uid": "O9_AegInk",
-  "version": 5,
+  "version": 8,
   "weekStart": ""
 }
