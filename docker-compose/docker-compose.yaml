@@ -9,6 +9,11 @@ services:
     restart: unless-stopped
     volumes:
     - ./config.yaml:/home/appuser/.config/SuiviBourse/config.yaml:ro
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
   grafana:
     container_name: suivi-bourse-graf
     depends_on:
@@ -20,6 +25,11 @@ services:
     volumes:
     - sb_grafana_data:/var/lib/grafana
     - ./grafana_provisioning:/etc/grafana/provisioning
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
   prometheus:
     command:
     - --config.file=/etc/prometheus/prometheus.yml
@@ -32,6 +42,11 @@ services:
     volumes:
     - sb_prometheus_data:/prometheus
     - ./prometheus_provisioning:/etc/prometheus/
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
 #version: '3.8'
 volumes:
   sb_prometheus_data:
