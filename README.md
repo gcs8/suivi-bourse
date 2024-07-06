@@ -77,3 +77,29 @@ Connect to Grafana (`http://localhost:3000`) with the following credentials:
 and go to dashboard **Stock share monitoring**
 
 *NB:* please wait ~10m to see all the cells getting filled
+
+If you are not seeing data, good chance something is just slightly not happy, use the below to troubbleshoot. 
+
+```bash
+cd /usr/local/suivibourse/suivi-bourse-3.7.2/docker-compose
+
+docker compose logs -f
+
+...
+suivi-bourse-app   | yaml.scanner.ScannerError: while scanning a simple key
+suivi-bourse-app   |   in "/home/appuser/.config/SuiviBourse/config.yaml", line 166, column 3
+suivi-bourse-app   | could not find expected ':'
+suivi-bourse-app   |   in "/home/appuser/.config/SuiviBourse/config.yaml", line 167, column 3
+...
+
+...
+suivi-bourse-app   | time=2024-07-06T02:40:27.998000 level=INFO location=main.py:152:<module> msg="SuiviBourse is running !" 
+suivi-bourse-app   | time=2024-07-06T02:40:28.073000 level=CRITICAL location=main.py:180:<module> msg="Shares field of the config file is invalid :{'shares': [{16: [{'estate': [{'received_dividend': ['null value not allowed']}]}]}]}" 
+suivi-bourse-app exited with code 1
+suivi-bourse-app   | time=2024-07-06T02:40:36.126000 level=INFO location=main.py:152:<module> msg="SuiviBourse is running !" 
+suivi-bourse-app   | time=2024-07-06T02:40:36.203000 level=CRITICAL location=main.py:180:<module> msg="Shares field of the config file is invalid :{'shares': [{16: [{'estate': [{'received_dividend': ['null value not allowed']}]}]}]}" 
+suivi-bourse-app   | time=2024-07-06T02:40:50.659000 level=INFO location=main.py:152:<module> msg="SuiviBourse is running !" 
+suivi-bourse-app   | time=2024-07-06T02:40:50.734000 level=CRITICAL location=main.py:180:<module> msg="Shares field of the config file is invalid :{'shares': [{16: [{'estate': [{'received_dividend': ['null value not allowed']}]}]}]}" 
+...
+
+```
