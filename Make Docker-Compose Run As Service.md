@@ -12,9 +12,9 @@ After=docker.service
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-WorkingDirectory=/usr/local/suivibourse/suivi-bourse-3.7.2/
-ExecStart=/usr/libexec/docker/cli-plugins/docker compose up -d
-ExecStop=/usr/libexec/docker/cli-plugins/docker compose down
+WorkingDirectory=/usr/local/suivibourse/suivi-bourse-3.7.2/docker-compose
+ExecStart=/usr/libexec/docker/cli-plugins/docker-compose up -d
+ExecStop=/usr/libexec/docker/cli-plugins/docker-compose down
 TimeoutStartSec=0
 
 [Install]
