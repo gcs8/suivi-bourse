@@ -949,6 +949,7 @@
           "color": {
             "mode": "palette-classic"
           },
+          "decimals": 3,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -996,8 +997,8 @@
             "uid": "${DS}"
           },
           "editorMode": "code",
-          "exemplar": true,
-          "expr": "sum(sb_share_price{share_name=~\"$share\"} * on(share_name) sb_owned_quantity{share_name=~\"$share\"})",
+          "exemplar": false,
+          "expr": "sum(sb_share_price{share_name=~\"$share\"} * sb_owned_quantity{share_name=~\"$share\"})",
           "groupBy": [
             {
               "params": [
@@ -1012,11 +1013,12 @@
               "type": "fill"
             }
           ],
-          "instant": true,
+          "instant": false,
           "interval": "",
           "legendFormat": "__auto",
           "orderByTime": "ASC",
           "policy": "default",
+          "range": true,
           "refId": "A",
           "resultFormat": "time_series",
           "select": [
@@ -1461,13 +1463,13 @@
     ]
   },
   "time": {
-    "from": "now-24h",
+    "from": "2024-07-08T13:26:55.000Z",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Stock share monitoring V5",
   "uid": "bdqzdx5d1qu4gav5",
-  "version": 5,
+  "version": 8,
   "weekStart": ""
 }
