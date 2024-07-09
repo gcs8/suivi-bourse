@@ -10,7 +10,7 @@ Small app written in Python to monitor the stock shares you own. It uses Prometh
 Please visit the [documentation's website](https://pbrissaud.github.io/suivi-bourse/docs) !
 
 ```bash
-wget https://github.com/pbrissaud/suivi-bourse/archive/refs/tags/v3.7.2.tar.gz
+wget https://github.com/gcs8/suivi-bourse/archive/refs/tags/2024.7.9.tar.gz
 
 mkdir  /usr/local/suivibourse
 
