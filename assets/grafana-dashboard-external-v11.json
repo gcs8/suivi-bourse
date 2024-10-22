@@ -25,21 +25,22 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 0,
-  "id": 1,
+  "id": 33,
   "links": [],
   "liveNow": false,
   "panels": [
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "$DS"
       },
       "fieldConfig": {
         "defaults": {
           "color": {
             "fixedColor": "purple",
-            "mode": "fixed"
+            "mode": "palette-classic"
           },
+          "decimals": 2,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -54,22 +55,23 @@
               }
             ]
           },
-          "unit": "currencyEUR"
+          "unit": "prefix:$"
         },
         "overrides": []
       },
       "gridPos": {
         "h": 4,
-        "w": 8,
+        "w": 5,
         "x": 0,
         "y": 0
       },
       "id": 76,
       "options": {
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -77,16 +79,16 @@
           "fields": "",
           "values": false
         },
-        "showPercentChange": false,
+        "showPercentChange": true,
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.1.4",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "$DS"
           },
           "editorMode": "code",
           "expr": "sum(sb_purchased_price{share_name=~\"$share\"} * on(share_name) sb_purchased_quantity{share_name=~\"$share\"})",
@@ -95,12 +97,156 @@
           "refId": "A"
         }
       ],
+      "transparent": true,
       "type": "stat"
     },
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "$DS"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "blue",
+            "mode": "fixed"
+          },
+          "decimals": 2,
+          "fieldMinMax": false,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "prefix:$"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 5,
+        "x": 5,
+        "y": 0
+      },
+      "id": 87,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": true,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "$DS"
+          },
+          "editorMode": "code",
+          "expr": "sum(sb_share_price{share_name=~\"$share\"} * on(share_name) sb_owned_quantity{share_name=~\"$share\"})",
+          "legendFormat": "Total Market Value",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "$DS"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "blue",
+            "mode": "palette-classic"
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "prefix:$"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 10,
+        "y": 0
+      },
+      "id": 468,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": true,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "$DS"
+          },
+          "editorMode": "code",
+          "expr": "sum(sb_share_price{share_name=~\"$share\"} * on(share_name) sb_owned_quantity{share_name=~\"$share\"}) - sum(sb_purchased_price{share_name=~\"$share\"} * on(share_name) sb_purchased_quantity{share_name=~\"$share\"})",
+          "legendFormat": "Current ROI",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "$DS"
       },
       "fieldConfig": {
         "defaults": {
@@ -122,22 +268,23 @@
               }
             ]
           },
-          "unit": "currencyEUR"
+          "unit": "percentunit"
         },
         "overrides": []
       },
       "gridPos": {
         "h": 4,
-        "w": 8,
-        "x": 8,
+        "w": 5,
+        "x": 14,
         "y": 0
       },
-      "id": 87,
+      "id": 469,
       "options": {
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -145,36 +292,37 @@
           "fields": "",
           "values": false
         },
-        "showPercentChange": false,
+        "showPercentChange": true,
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.1.4",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "$DS"
           },
           "editorMode": "code",
-          "expr": "sum(sb_share_price{share_name=~\"$share\"} * on(share_name) sb_owned_quantity{share_name=~\"$share\"})",
-          "legendFormat": "Total Valuation",
+          "expr": "sum(sb_share_price{share_name=~\"$share\"} * on(share_name) sb_owned_quantity{share_name=~\"$share\"}) / sum(sb_purchased_price{share_name=~\"$share\"} * on(share_name) sb_purchased_quantity{share_name=~\"$share\"})",
+          "legendFormat": "Improvement From Base",
           "range": true,
           "refId": "A"
         }
       ],
+      "transparent": true,
       "type": "stat"
     },
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "$DS"
       },
       "fieldConfig": {
         "defaults": {
           "color": {
             "fixedColor": "purple",
-            "mode": "thresholds"
+            "mode": "palette-classic"
           },
           "mappings": [],
           "thresholds": {
@@ -196,16 +344,17 @@
       },
       "gridPos": {
         "h": 4,
-        "w": 8,
-        "x": 16,
+        "w": 5,
+        "x": 19,
         "y": 0
       },
       "id": 88,
       "options": {
-        "colorMode": "background",
-        "graphMode": "none",
-        "justifyMode": "auto",
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -213,16 +362,16 @@
           "fields": "",
           "values": false
         },
-        "showPercentChange": false,
+        "showPercentChange": true,
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.1.4",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "$DS"
           },
           "editorMode": "code",
           "expr": "((sum(sb_share_price{share_name=~\"$share\"} * on(share_name) sb_owned_quantity{share_name=~\"$share\"}) - sum(sb_purchased_price{share_name=~\"$share\"} * on(share_name) sb_purchased_quantity{share_name=~\"$share\"})) + sum(sb_received_dividend{share_name=~\"$share\"})) / sum(sb_purchased_price{share_name=~\"$share\"} * on(share_name) sb_purchased_quantity{share_name=~\"$share\"})",
@@ -231,9 +380,323 @@
           "refId": "A"
         }
       ],
+      "transparent": true,
       "type": "stat"
     },
     {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "decimals": 4,
+          "mappings": []
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 8,
+        "x": 0,
+        "y": 4
+      },
+      "id": 867,
+      "options": {
+        "displayLabels": [
+          "name"
+        ],
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "values": [
+            "percent",
+            "value"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ddqxwv80m3e2od"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "expr": "sb_owned_quantity{share_name=~\"$share\"}",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "{{share_symbol}}",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "Share distribution by qty",
+      "transparent": true,
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "decimals": 2,
+          "mappings": [],
+          "unit": "currencyUSD"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 8,
+        "x": 8,
+        "y": 4
+      },
+      "id": 868,
+      "options": {
+        "displayLabels": [
+          "percent"
+        ],
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "sortBy": "Value",
+          "sortDesc": false,
+          "values": [
+            "value",
+            "percent"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ddqxwv80m3e2od"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "expr": "(sb_share_price{share_name=~\"$share\"} * on(share_name) sb_owned_quantity{share_name=~\"$share\"})",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "{{share_symbol}}",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "Share distribution by value",
+      "transparent": true,
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            }
+          },
+          "decimals": 2,
+          "mappings": [],
+          "unit": "currencyUSD"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 14,
+        "w": 8,
+        "x": 16,
+        "y": 4
+      },
+      "id": 1067,
+      "options": {
+        "displayLabels": [
+          "percent"
+        ],
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "showLegend": true,
+          "sortBy": "Value",
+          "sortDesc": false,
+          "values": [
+            "value",
+            "percent"
+          ]
+        },
+        "pieType": "pie",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ddqxwv80m3e2od"
+          },
+          "disableTextWrap": false,
+          "editorMode": "code",
+          "expr": "(sb_share_price{share_name=~\"$share\"} * on(share_name) sb_owned_quantity{share_name=~\"$share\"}) - (sb_purchased_price{share_name=~\"$share\"} * on(share_name) sb_purchased_quantity{share_name=~\"$share\"})",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "{{share_symbol}}",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        }
+      ],
+      "title": "Share distribution by ROI",
+      "transparent": true,
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "$DS"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "blue",
+            "mode": "palette-classic"
+          },
+          "decimals": 2,
+          "fieldMinMax": true,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "prefix:$"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 18
+      },
+      "id": 668,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "center",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": true,
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "$DS"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sb_share_price{share_name=~\"$share\"}",
+          "format": "time_series",
+          "instant": false,
+          "legendFormat": "{{share_symbol}}",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "collapsed": false,
       "datasource": {
         "type": "datasource",
         "uid": "grafana"
@@ -242,7 +705,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 4
+        "y": 28
       },
       "id": 2,
       "panels": [],
@@ -262,7 +725,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "PBFA97CFB590B2093"
+        "uid": "$DS"
       },
       "fieldConfig": {
         "defaults": {
@@ -302,7 +765,7 @@
               "mode": "off"
             }
           },
-          "decimals": 2,
+          "decimals": 4,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -313,7 +776,7 @@
               }
             ]
           },
-          "unit": "currencyEUR"
+          "unit": "currencyUSD"
         },
         "overrides": []
       },
@@ -321,7 +784,7 @@
         "h": 12,
         "w": 12,
         "x": 0,
-        "y": 5
+        "y": 29
       },
       "id": 4,
       "options": {
@@ -344,14 +807,18 @@
           "placement": "bottom",
           "showLegend": false
         },
-        "mode": "candles"
+        "mode": "candles",
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
       },
       "pluginVersion": "7.4.2",
       "targets": [
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "$DS"
           },
           "editorMode": "code",
           "exemplar": false,
@@ -366,7 +833,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "$DS"
           },
           "editorMode": "code",
           "expr": "max_over_time(sb_share_price{share_name=\"$share\"}[$__rate_interval])",
@@ -379,7 +846,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "$DS"
           },
           "editorMode": "code",
           "expr": "min_over_time(sb_share_price{share_name=\"$share\"}[$__rate_interval])",
@@ -392,7 +859,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "PBFA97CFB590B2093"
+            "uid": "$DS"
           },
           "editorMode": "code",
           "expr": "last_over_time(sb_share_price{share_name=\"$share\"}[$__rate_interval] offset $__rate_interval) ",
@@ -404,6 +871,7 @@
         }
       ],
       "title": "Share price evolution",
+      "transparent": true,
       "type": "candlestick"
     },
     {
@@ -430,7 +898,7 @@
         "h": 4,
         "w": 4,
         "x": 12,
-        "y": 5
+        "y": 29
       },
       "id": 8,
       "options": {
@@ -438,6 +906,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -450,7 +919,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.1.4",
       "targets": [
         {
           "datasource": {
@@ -474,6 +943,7 @@
         }
       ],
       "title": "Purchased quantity",
+      "transparent": true,
       "type": "stat"
     },
     {
@@ -494,7 +964,7 @@
               }
             ]
           },
-          "unit": "currencyEUR"
+          "unit": "prefix:$"
         },
         "overrides": []
       },
@@ -502,7 +972,7 @@
         "h": 4,
         "w": 4,
         "x": 16,
-        "y": 5
+        "y": 29
       },
       "id": 9,
       "options": {
@@ -510,6 +980,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -522,7 +993,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.1.4",
       "targets": [
         {
           "datasource": {
@@ -546,81 +1017,14 @@
         }
       ],
       "title": "Cost price",
+      "transparent": true,
       "type": "stat"
     },
     {
-      "datasource": "Prometheus",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "text",
-                "value": null
-              }
-            ]
-          },
-          "unit": "currencyEUR"
-        },
-        "overrides": []
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS}"
       },
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 20,
-        "y": 5
-      },
-      "id": 10,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "auto",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showPercentChange": false,
-        "text": {},
-        "textMode": "auto",
-        "wideLayout": true
-      },
-      "pluginVersion": "11.0.0",
-      "targets": [
-        {
-          "datasource": {
-            "0": "P",
-            "1": "r",
-            "2": "o",
-            "3": "m",
-            "4": "e",
-            "5": "t",
-            "6": "h",
-            "7": "e",
-            "8": "u",
-            "9": "s"
-          },
-          "exemplar": true,
-          "expr": "sb_purchased_fee{share_name=\"$share\"}",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "",
-          "refId": "A"
-        }
-      ],
-      "title": "Fees",
-      "type": "stat"
-    },
-    {
-      "datasource": "Prometheus",
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -637,22 +1041,23 @@
               }
             ]
           },
-          "unit": "currencyEUR"
+          "unit": "prefix:$"
         },
         "overrides": []
       },
       "gridPos": {
         "h": 4,
-        "w": 6,
-        "x": 12,
-        "y": 9
+        "w": 4,
+        "x": 20,
+        "y": 29
       },
-      "id": 11,
+      "id": 10,
       "options": {
         "colorMode": "value",
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -665,34 +1070,236 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.1.4",
       "targets": [
         {
           "datasource": {
-            "0": "P",
-            "1": "r",
-            "2": "o",
-            "3": "m",
-            "4": "e",
-            "5": "t",
-            "6": "h",
-            "7": "e",
-            "8": "u",
-            "9": "s"
+            "type": "prometheus",
+            "uid": "${DS}"
           },
+          "editorMode": "code",
           "exemplar": true,
-          "expr": "sb_share_price{share_name=\"$share\"}",
+          "expr": "sum(sb_purchased_price{share_name=\"$share\"} * sb_purchased_quantity{share_name=\"$share\"})",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
           "instant": true,
           "interval": "",
-          "legendFormat": "",
-          "refId": "A"
+          "legendFormat": "__auto",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
         }
       ],
-      "title": "Actual price",
+      "title": "Base",
+      "transparent": true,
       "type": "stat"
     },
     {
-      "datasource": "Prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "ddqxwv80m3e2od"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          },
+          "unit": "prefix:$"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 12,
+        "y": 33
+      },
+      "id": 11,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": true,
+        "text": {},
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ddqxwv80m3e2od"
+          },
+          "editorMode": "code",
+          "expr": "(sb_share_price{share_name=~\"$share\"})",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "Current Share Price",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "${DS}"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "decimals": 2,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "text",
+                "value": null
+              }
+            ]
+          },
+          "unit": "prefix:$"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 16,
+        "y": 33
+      },
+      "id": 269,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "area",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "percentChangeColorMode": "standard",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showPercentChange": true,
+        "text": {},
+        "textMode": "auto",
+        "wideLayout": true
+      },
+      "pluginVersion": "11.1.4",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "${DS}"
+          },
+          "editorMode": "code",
+          "exemplar": false,
+          "expr": "sum(sb_share_price{share_name=~\"$share\"} * sb_owned_quantity{share_name=~\"$share\"})",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "instant": false,
+          "interval": "",
+          "legendFormat": "__auto",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "range": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "title": "Market Value",
+      "transparent": true,
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "ddqxwv80m3e2od"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -717,22 +1324,23 @@
               }
             ]
           },
-          "unit": "currencyEUR"
+          "unit": "prefix:$"
         },
         "overrides": []
       },
       "gridPos": {
         "h": 4,
-        "w": 6,
-        "x": 18,
-        "y": 9
+        "w": 4,
+        "x": 20,
+        "y": 33
       },
       "id": 12,
       "options": {
         "colorMode": "value",
-        "graphMode": "none",
+        "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -740,35 +1348,29 @@
           "fields": "",
           "values": false
         },
-        "showPercentChange": false,
+        "showPercentChange": true,
         "text": {},
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.1.4",
       "targets": [
         {
           "datasource": {
-            "0": "P",
-            "1": "r",
-            "2": "o",
-            "3": "m",
-            "4": "e",
-            "5": "t",
-            "6": "h",
-            "7": "e",
-            "8": "u",
-            "9": "s"
+            "type": "prometheus",
+            "uid": "ddqxwv80m3e2od"
           },
-          "exemplar": true,
-          "expr": "sb_share_price{share_name=\"$share\"} - sb_purchased_price{share_name=\"$share\"}",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "",
+          "editorMode": "code",
+          "expr": "sum(sb_share_price{share_name=~\"$share\"}) - sum(sb_purchased_price{share_name=~\"$share\"})",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
           "refId": "A"
         }
       ],
       "title": "Unitary Gain / Loss ",
+      "transparent": true,
       "type": "stat"
     },
     {
@@ -778,6 +1380,7 @@
           "color": {
             "mode": "thresholds"
           },
+          "decimals": 4,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -795,7 +1398,7 @@
         "h": 4,
         "w": 4,
         "x": 12,
-        "y": 13
+        "y": 37
       },
       "id": 6,
       "options": {
@@ -803,6 +1406,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -815,7 +1419,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.1.4",
       "targets": [
         {
           "datasource": {
@@ -839,6 +1443,7 @@
         }
       ],
       "title": "Owned quantity",
+      "transparent": true,
       "type": "stat"
     },
     {
@@ -848,6 +1453,7 @@
           "color": {
             "mode": "thresholds"
           },
+          "decimals": 2,
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -858,7 +1464,7 @@
               }
             ]
           },
-          "unit": "currencyEUR"
+          "unit": "prefix:$"
         },
         "overrides": []
       },
@@ -866,7 +1472,7 @@
         "h": 4,
         "w": 4,
         "x": 16,
-        "y": 13
+        "y": 37
       },
       "id": 13,
       "options": {
@@ -874,6 +1480,7 @@
         "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -886,7 +1493,7 @@
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.1.4",
       "targets": [
         {
           "datasource": {
@@ -910,10 +1517,14 @@
         }
       ],
       "title": "Received dividend",
+      "transparent": true,
       "type": "stat"
     },
     {
-      "datasource": "Prometheus",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "ddqxwv80m3e2od"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -938,7 +1549,7 @@
               }
             ]
           },
-          "unit": "currencyEUR"
+          "unit": "prefix:$"
         },
         "overrides": []
       },
@@ -946,14 +1557,15 @@
         "h": 4,
         "w": 4,
         "x": 20,
-        "y": 13
+        "y": 37
       },
       "id": 14,
       "options": {
         "colorMode": "value",
-        "graphMode": "none",
+        "graphMode": "area",
         "justifyMode": "auto",
         "orientation": "auto",
+        "percentChangeColorMode": "standard",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
@@ -961,39 +1573,33 @@
           "fields": "",
           "values": false
         },
-        "showPercentChange": false,
+        "showPercentChange": true,
         "text": {},
         "textMode": "auto",
         "wideLayout": true
       },
-      "pluginVersion": "11.0.0",
+      "pluginVersion": "11.1.4",
       "targets": [
         {
           "datasource": {
-            "0": "P",
-            "1": "r",
-            "2": "o",
-            "3": "m",
-            "4": "e",
-            "5": "t",
-            "6": "h",
-            "7": "e",
-            "8": "u",
-            "9": "s"
+            "type": "prometheus",
+            "uid": "ddqxwv80m3e2od"
           },
-          "exemplar": true,
-          "expr": "((sb_owned_quantity{share_name=\"$share\"} * sb_share_price{share_name=\"$share\"}) + sb_received_dividend{share_name=\"$share\"}) - ((sb_purchased_quantity{share_name=\"$share\"} * sb_purchased_price{share_name=\"$share\"}) + sb_purchased_fee{share_name=\"$share\"})",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "",
+          "editorMode": "code",
+          "expr": "sum(sb_share_price{share_name=~\"$share\"} * on(share_name) sb_owned_quantity{share_name=~\"$share\"}) - sum(sb_purchased_price{share_name=~\"$share\"} * on(share_name) sb_purchased_quantity{share_name=~\"$share\"})",
+          "hide": false,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
           "refId": "A"
         }
       ],
       "title": "Total gain / loss",
+      "transparent": true,
       "type": "stat"
     }
   ],
-  "refresh": "",
+  "refresh": "5m",
   "revision": 1,
   "schemaVersion": 39,
   "tags": [],
@@ -1001,13 +1607,29 @@
     "list": [
       {
         "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
+          "selected": true,
+          "text": [
+            "INTC_Roth",
+            "QQQM_Roth",
+            "SCHD_Roth",
+            "TSM_Roth",
+            "VIG_Roth",
+            "VOO_Roth",
+            "VTI_Roth"
+          ],
+          "value": [
+            "INTC_Roth",
+            "QQQM_Roth",
+            "SCHD_Roth",
+            "TSM_Roth",
+            "VIG_Roth",
+            "VOO_Roth",
+            "VTI_Roth"
+          ]
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "$DS"
         },
         "definition": "label_values(sb_share_info{quote_type=~\"$quote_type\", share_exchange=~\"$exchange\"},share_name)",
         "hide": 0,
@@ -1017,8 +1639,9 @@
         "name": "share",
         "options": [],
         "query": {
+          "qryType": 1,
           "query": "label_values(sb_share_info{quote_type=~\"$quote_type\", share_exchange=~\"$exchange\"},share_name)",
-          "refId": "StandardVariableQuery"
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 2,
         "regex": "",
@@ -1041,7 +1664,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "$DS"
         },
         "definition": "label_values(sb_share_info, quote_type)",
         "hide": 0,
@@ -1072,7 +1695,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "PBFA97CFB590B2093"
+          "uid": "$DS"
         },
         "definition": "label_values(sb_share_info, share_exchange)",
         "hide": 0,
@@ -1090,18 +1713,39 @@
         "skipUrlSync": false,
         "sort": 1,
         "type": "query"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "Prometheus"
+          ],
+          "value": [
+            "ddqxwv80m3e2od"
+          ]
+        },
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "DS",
+        "options": [],
+        "query": "prometheus",
+        "queryValue": "",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
       }
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now/M",
     "to": "now"
   },
-  "timeRangeUpdatedDuringEditOrView": false,
   "timepicker": {},
   "timezone": "",
-  "title": "Stock share monitoring",
-  "uid": "O9_AegInk",
+  "title": "Stock share monitoring V6 ROTH",
+  "uid": "adrhav5kt3j0ge",
   "version": 2,
   "weekStart": ""
 }
